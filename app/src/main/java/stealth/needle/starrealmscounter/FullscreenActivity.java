@@ -461,6 +461,7 @@ public class FullscreenActivity extends Activity {
                 Integer.valueOf(attack.getText().toString());
 
         influence.setText(String.valueOf(resultingInfluence));
+        attack.setText("0");
 
         // Pew-pew!
         laserSound.start();
