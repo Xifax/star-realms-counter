@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#0099cc"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
     android:fitsSystemWindows="true"
     tools:context=".FullscreenActivity">
 
@@ -9,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:keepScreenOn="true"
-        android:textColor="#33b5e5"
+        android:textColor="@color/background"
         android:text="" />
 
     <!-- Player 1 -->
@@ -29,68 +31,33 @@
             android:layout_height="wrap_content">
 
             <Button android:id="@+id/player1_attack_clear"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:layout_weight="0.4"
-                android:text="CLR" />
+                android:text="CLR"
+                style="@style/AttackActionButton" />
 
             <Button android:id="@+id/player1_attack_apply"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:layout_weight="0.4"
-                android:text="ATK" />
+                android:text="ATK"
+                style="@style/AttackActionButton" />
 
             <TextView
                 android:id="@+id/player1_attack"
                 android:text="0"
-                android:layout_weight="0.4"
-                android:gravity="center"
-                android:textSize="40dp"
-                android:textColor="@android:color/holo_red_dark"
-                android:fontFamily="sans-serif-slim"
-                android:background="@color/black_overlay"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                style="@style/AttackValue" />
 
             <Button android:id="@+id/player1_attack_plus1"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_weight="0.2"
-                android:text="+1" />
+                android:text="+1"
+                style="@style/AddAttackButton" />
 
             <Button android:id="@+id/player1_attack_plus2"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_weight="0.2"
-                android:text="+2" />
+                android:text="+2"
+                style="@style/AddAttackButton" />
 
             <Button android:id="@+id/player1_attack_plus4"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_weight="0.2"
-                android:text="+4" />
+                android:text="+4"
+                style="@style/AddAttackButton" />
 
             <Button android:id="@+id/player1_attack_plus8"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_weight="0.2"
-                android:text="+8" />
+                android:text="+8"
+                style="@style/AddAttackButton" />
 
         </LinearLayout> <!-- END Combat -->
 
@@ -100,60 +67,29 @@
             android:layout_height="wrap_content">
 
             <Button android:id="@+id/player1_commerce_clear"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:layout_weight="0.8"
-                android:text="SPEND" />
+                android:text="SPEND"
+                style="@style/SpendCommerceButton" />
 
             <TextView
                 android:id="@+id/player1_commerce"
                 android:text="0"
-                android:layout_weight="0.4"
-                android:gravity="center"
-                android:textSize="40dp"
-                android:textColor="#ffd700"
-                android:fontFamily="sans-serif-slim"
-                android:background="@color/black_overlay"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                style="@style/CommerceValue" />
 
             <Button android:id="@+id/player1_commerce_plus1"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="#ffd700"
-                android:layout_weight="0.2"
-                android:text="+1" />
+                android:text="+1"
+                style="@style/AddCommerceButton" />
 
             <Button android:id="@+id/player1_commerce_plus2"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="#ffd700"
-                android:layout_weight="0.2"
-                android:text="+2" />
+                android:text="+2"
+                style="@style/AddCommerceButton" />
 
             <Button android:id="@+id/player1_commerce_plus4"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="#ffd700"
-                android:layout_weight="0.2"
-                android:text="+4" />
+                android:text="+4"
+                style="@style/AddCommerceButton" />
 
             <Button android:id="@+id/player1_commerce_plus8"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="#ffd700"
-                android:layout_weight="0.2"
-                android:text="+8" />
+                android:text="+8"
+                style="@style/AddCommerceButton" />
 
         </LinearLayout> <!-- END Commerce -->
 
@@ -163,75 +99,36 @@
             android:layout_height="wrap_content">
 
             <Button android:id="@+id/player1_health_minus10"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_light"
-                android:layout_weight="0.2"
-                android:text="10" />
+                android:text="10"
+                style="@style/SubtractInfluenceButton" />
 
             <Button android:id="@+id/player1_health_minus5"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_light"
-                android:layout_weight="0.2"
-                android:text="5" />
+                android:text="5"
+                style="@style/SubtractInfluenceButton" />
 
             <Button android:id="@+id/player1_health_minus1"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:textColor="@android:color/holo_red_light"
-                android:layout_weight="0.2"
-                android:text="1" />
+                android:text="1"
+                style="@style/SubtractInfluenceButton" />
 
             <TextView
+                style="@style/Influence"
                 android:id="@+id/player1_health"
-                android:text="50"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textSize="80dp"
-                android:textColor="@android:color/holo_green_light"
-                android:fontFamily="sans-serif-thin"
-                android:background="@color/black_overlay"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:text="50" />
 
             <Button android:id="@+id/player1_health_plus1"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:layout_weight="0.2"
-                android:textColor="@android:color/holo_green_light"
-                android:text="1" />
+                android:text="1"
+                style="@style/AddInfluenceButton" />
 
             <Button android:id="@+id/player1_health_plus5"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:layout_weight="0.2"
-                android:textColor="@android:color/holo_green_light"
-                android:text="5" />
+                android:text="5"
+                style="@style/AddInfluenceButton" />
 
             <Button android:id="@+id/player1_health_plus10"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/button"
-                android:layout_weight="0.2"
-                android:textColor="@android:color/holo_green_light"
-                android:text="10" />
+                android:text="10"
+                style="@style/AddInfluenceButton" />
 
-            </LinearLayout>
-
+            </LinearLayout> <!-- END Influence -->
         </LinearLayout> <!-- END Wrapper -->
-
     </FrameLayout> <!-- END Player 1 -->
 
     <!-- TODO: Log? -->
@@ -254,68 +151,33 @@
                 android:layout_height="wrap_content">
 
                 <Button android:id="@+id/player2_attack_clear"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:layout_weight="0.4"
-                    android:text="CLR" />
+                    android:text="CLR"
+                    style="@style/AttackActionButton" />
 
                 <Button android:id="@+id/player2_attack_apply"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:layout_weight="0.4"
-                    android:text="ATK" />
+                    android:text="ATK"
+                    style="@style/AttackActionButton" />
 
                 <TextView
                     android:id="@+id/player2_attack"
                     android:text="0"
-                    android:layout_weight="0.4"
-                    android:gravity="center"
-                    android:textSize="40dp"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:fontFamily="sans-serif-slim"
-                    android:background="@color/black_overlay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/AttackValue" />
 
                 <Button android:id="@+id/player2_attack_plus1"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:layout_weight="0.2"
-                    android:text="+1" />
+                    android:text="+1"
+                    style="@style/AddAttackButton" />
 
                 <Button android:id="@+id/player2_attack_plus2"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:layout_weight="0.2"
-                    android:text="+2" />
+                    android:text="+2"
+                    style="@style/AddAttackButton" />
 
                 <Button android:id="@+id/player2_attack_plus4"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:layout_weight="0.2"
-                    android:text="+4" />
+                    android:text="+4"
+                    style="@style/AddAttackButton" />
 
                 <Button android:id="@+id/player2_attack_plus8"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:layout_weight="0.2"
-                    android:text="+8" />
+                    android:text="+8"
+                    style="@style/AddAttackButton" />
 
                 </LinearLayout> <!-- END Combat -->
 
@@ -325,60 +187,29 @@
                 android:layout_height="wrap_content">
 
                 <Button android:id="@+id/player2_commerce_clear"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:layout_weight="0.8"
-                    android:text="SPEND" />
+                    android:text="SPEND"
+                    style="@style/SpendCommerceButton" />
 
                 <TextView
                     android:id="@+id/player2_commerce"
                     android:text="0"
-                    android:layout_weight="0.4"
-                    android:gravity="center"
-                    android:textSize="40dp"
-                    android:textColor="#ffd700"
-                    android:fontFamily="sans-serif-slim"
-                    android:background="@color/black_overlay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/CommerceValue" />
 
                 <Button android:id="@+id/player2_commerce_plus1"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="#ffd700"
-                    android:layout_weight="0.2"
-                    android:text="+1" />
+                    android:text="+1"
+                    style="@style/AddCommerceButton" />
 
                 <Button android:id="@+id/player2_commerce_plus2"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="#ffd700"
-                    android:layout_weight="0.2"
-                    android:text="+2" />
+                    android:text="+2"
+                    style="@style/AddCommerceButton" />
 
                 <Button android:id="@+id/player2_commerce_plus4"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="#ffd700"
-                    android:layout_weight="0.2"
-                    android:text="+4" />
+                    android:text="+4"
+                    style="@style/AddCommerceButton" />
 
                 <Button android:id="@+id/player2_commerce_plus8"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="#ffd700"
-                    android:layout_weight="0.2"
-                    android:text="+8" />
+                    android:text="+8"
+                    style="@style/AddCommerceButton" />
 
             </LinearLayout> <!-- END Commerce -->
 
@@ -389,73 +220,36 @@
                 android:layout_height="wrap_content">
 
                 <Button android:id="@+id/player2_health_minus10"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_light"
-                    android:layout_weight="0.2"
-                    android:text="10" />
+                    android:text="10"
+                    style="@style/SubtractInfluenceButton" />
 
                 <Button android:id="@+id/player2_health_minus5"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_light"
-                    android:layout_weight="0.2"
-                    android:text="5" />
+                    android:text="5"
+                    style="@style/SubtractInfluenceButton" />
 
                 <Button android:id="@+id/player2_health_minus1"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:textColor="@android:color/holo_red_light"
-                    android:layout_weight="0.2"
-                    android:text="1" />
+                    android:text="1"
+                    style="@style/SubtractInfluenceButton" />
 
                 <TextView
+                    style="@style/Influence"
                     android:id="@+id/player2_health"
-                    android:text="50"
-                    android:layout_weight="0.7"
-                    android:gravity="center"
-                    android:textSize="80dp"
-                    android:textColor="@android:color/holo_green_light"
-                    android:fontFamily="sans-serif-thin"
-                    android:background="@color/black_overlay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:text="50" />
 
                 <Button android:id="@+id/player2_health_plus1"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:layout_weight="0.2"
-                    android:textColor="@android:color/holo_green_light"
-                    android:text="1" />
+                    android:text="1"
+                    style="@style/AddInfluenceButton" />
 
                 <Button android:id="@+id/player2_health_plus5"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:layout_weight="0.2"
-                    android:textColor="@android:color/holo_green_light"
-                    android:text="5" />
+                    android:text="5"
+                    style="@style/AddInfluenceButton" />
 
                 <Button android:id="@+id/player2_health_plus10"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/button"
-                    android:layout_weight="0.2"
-                    android:textColor="@android:color/holo_green_light"
-                    android:text="10" />
+                    android:text="10"
+                    style="@style/AddInfluenceButton" />
 
-            </LinearLayout>
+            </LinearLayout> <!-- END Influence -->
         </LinearLayout> <!-- END Wrapper -->
-    </FrameLayout>
+    </FrameLayout> <!-- END Player 2 -->
 
 </RelativeLayout>

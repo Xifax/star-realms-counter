@@ -1,5 +1,10 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
+    <color name="background">#33b5e5</color>
+    <color name="main_background">#0099cc</color>
+    <color name="gold">#ffd700</color>
+    <color name="button_pressed">#dc33b5e5</color>
+    <color name="button_frame">#fff</color>
 
 </resources>

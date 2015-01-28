@@ -23,4 +23,83 @@
 
     <style name="ButtonBarButton" />
 
+    <style name="Influence">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">0.7</item>
+        <item name="android:textSize">80dp</item>
+        <item name="android:textColor">@android:color/holo_green_light</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AddInfluenceButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:textColor">@android:color/holo_green_light</item>
+    </style>
+
+    <style name="SubtractInfluenceButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:layout_weight">0.2</item>
+    </style>
+
+    <style name="AddCommerceButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/gold</item>
+        <item name="android:layout_weight">0.2</item>
+    </style>
+
+    <style name="AddAttackButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:layout_weight">0.2</item>
+    </style>
+
+    <style name="AttackValue">
+        <item name="android:layout_weight">0.4</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">40dp</item>
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:fontFamily">sans-serif-slim</item>
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CommerceValue">
+        <item name="android:layout_weight">0.4</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">40dp</item>
+        <item name="android:textColor">@color/gold</item>
+        <item name="android:fontFamily">sans-serif-slim</item>
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AttackActionButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_weight">0.4</item>
+    </style>
+
+    <style name="SpendCommerceButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_weight">0.8</item>
+    </style>
+
 </resources>
