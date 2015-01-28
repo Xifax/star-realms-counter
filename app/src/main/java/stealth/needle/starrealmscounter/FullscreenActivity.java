@@ -4,6 +4,7 @@ import stealth.needle.starrealmscounter.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,13 +48,18 @@ public class FullscreenActivity extends Activity {
      */
     private SystemUiHider mSystemUiHider;
 
+    /**
+     * Audio effects
+     */
+    private MediaPlayer laserSound;
+    private MediaPlayer coinSound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
 
-//        final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
 
         // Don't show action bar, ever
@@ -104,6 +110,9 @@ public class FullscreenActivity extends Activity {
                 }
             }
         });
+
+        laserSound = MediaPlayer.create(this, R.raw.laser);
+         coinSound = MediaPlayer.create(this, R.raw.coin);
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -239,6 +248,7 @@ public class FullscreenActivity extends Activity {
             @Override
             public void onClick(View v) {
                 clearAmount(R.id.player1_commerce);
+                coinSound.start();
             }
         });
 
@@ -276,6 +286,7 @@ public class FullscreenActivity extends Activity {
             @Override
             public void onClick(View v) {
                 clearAmount(R.id.player2_commerce);
+                coinSound.start();
             }
         });
 
@@ -450,6 +461,9 @@ public class FullscreenActivity extends Activity {
                 Integer.valueOf(attack.getText().toString());
 
         influence.setText(String.valueOf(resultingInfluence));
+
+        // Pew-pew!
+        laserSound.start();
     }
 
     
