@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
+ * Star Realms counter is based on a simple FullScreen activity.
  * @see SystemUiHider
  */
 public class FullscreenActivity extends Activity {
@@ -54,6 +52,10 @@ public class FullscreenActivity extends Activity {
     private MediaPlayer laserSound;
     private MediaPlayer coinSound;
 
+    /******************
+     * Initialization *
+     ******************/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,32 +67,14 @@ public class FullscreenActivity extends Activity {
         // Don't show action bar, ever
         this.getActionBar().hide();
 
-        // Set up an instance of SystemUiHider to control the system UI for
-        // this activity.
+        // Set up an instance of SystemUiHider to control the system UI for this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
         mSystemUiHider.setup();
         mSystemUiHider
                 .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-                    // Cached values.
-                    int mControlsHeight;
-                    int mShortAnimTime;
-
                     @Override
                     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
                     public void onVisibilityChange(boolean visible) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                            // If the ViewPropertyAnimator API is available
-                            // (Honeycomb MR2 and later), use it to animate the
-                            // in-layout UI controls at the bottom of the
-                            // screen.
-                            if (mControlsHeight == 0) { }
-                            if (mShortAnimTime == 0) {
-                                mShortAnimTime = getResources().getInteger(
-                                        android.R.integer.config_shortAnimTime);
-                            }
-                        } else {
-                        }
-
                         if (visible && AUTO_HIDE) {
                             // Schedule a hide().
                             delayedHide(AUTO_HIDE_DELAY_MILLIS);
@@ -112,11 +96,13 @@ public class FullscreenActivity extends Activity {
         });
 
         laserSound = MediaPlayer.create(this, R.raw.laser);
-         coinSound = MediaPlayer.create(this, R.raw.coin);
+        coinSound = MediaPlayer.create(this, R.raw.coin);
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
+
+        // TODO: use reflection to refactor this mess
 
         /* Influence */
 
@@ -383,6 +369,53 @@ public class FullscreenActivity extends Activity {
         });
     }
 
+    /**************************
+     * UI logic and shortcuts *
+     **************************/
+
+    /**
+     * Update displayed amount for specific view (influence, commerce, etc)
+     * @param playerView TextView to update
+     * @param amount Number to add/subtract
+     * @param increment Should add or subtract
+     */
+    public void updateAmount(int playerView, int amount, boolean increment)  {
+        TextView amountView = (TextView)findViewById(playerView);
+        Integer currentAmount = Integer.parseInt(amountView.getText().toString());
+        Integer updatedAmount = (increment) ? currentAmount + amount : currentAmount - amount;
+        amountView.setText(String.valueOf(updatedAmount));
+    }
+
+    /**
+     * Reset specified view
+     * @param playerView TextView to reset
+     */
+    public void clearAmount(int playerView) {
+        ((TextView)findViewById(playerView)).setText("0");
+    }
+
+    /**
+     * Apply one player's attack to other player influence
+     * @param attackField First player attack field
+     * @param defenderInfluence Second player influence field
+     */
+    public void applyAttack(int attackField, int defenderInfluence) {
+        TextView attack = (TextView)findViewById(attackField);
+        TextView influence = (TextView)findViewById(defenderInfluence);
+        int resultingInfluence = Integer.valueOf(influence.getText().toString()) -
+                Integer.valueOf(attack.getText().toString());
+
+        influence.setText(String.valueOf(resultingInfluence));
+        attack.setText("0");
+
+        // Pew-pew!
+        laserSound.start();
+    }
+
+    /************************************
+     * Activity listeners and overrides *
+     ************************************/
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -426,46 +459,6 @@ public class FullscreenActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    /* UI logic */
-
-    /**
-     * Update displayed amount for specific view (influence, commerce, etc)
-     * @param playerView TextView to update
-     * @param amount Number to add/subtract
-     * @param increment Should add or subtract
-     */
-    public void updateAmount(int playerView, int amount, boolean increment)  {
-        TextView amountView = (TextView)findViewById(playerView);
-        Integer currentAmount = Integer.parseInt(amountView.getText().toString());
-        Integer updatedAmount = (increment) ? currentAmount + amount : currentAmount - amount;
-        amountView.setText(String.valueOf(updatedAmount));
-    }
-
-    /**
-     * Reset specified view
-     * @param playerView TextView to reset
-     */
-    public void clearAmount(int playerView) {
-        ((TextView)findViewById(playerView)).setText("0");
-    }
-
-    /**
-     * Apply one player's attack to other's influence
-     * @param attackField First player attack field
-     * @param defenderInfluence Second player influence field
-     */
-    public void applyAttack(int attackField, int defenderInfluence) {
-        TextView attack = (TextView)findViewById(attackField);
-        TextView influence = (TextView)findViewById(defenderInfluence);
-        int resultingInfluence = Integer.valueOf(influence.getText().toString()) -
-                Integer.valueOf(attack.getText().toString());
-
-        influence.setText(String.valueOf(resultingInfluence));
-        attack.setText("0");
-
-        // Pew-pew!
-        laserSound.start();
-    }
 
     
 }
