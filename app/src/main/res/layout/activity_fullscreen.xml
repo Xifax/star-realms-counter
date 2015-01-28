@@ -6,6 +6,8 @@
     android:fitsSystemWindows="true"
     tools:context=".FullscreenActivity">
 
+    <!-- TODO: horizontal layout -->
+
     <!-- Background -->
     <TextView android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
