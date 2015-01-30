@@ -132,79 +132,11 @@ public class FullscreenActivity extends Activity {
         });
 
         /* Commerce */
-
-        /* Player 1 */
-        findViewById(R.id.player1_commerce_plus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_commerce, 1, true);
-            }
-        });
-        findViewById(R.id.player1_commerce_plus2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_commerce, 2, true);
-            }
-        });
-        findViewById(R.id.player1_commerce_plus4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_commerce, 4, true);
-            }
-        });
-        findViewById(R.id.player1_commerce_plus8).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_commerce, 8, true);
-            }
-        });
-        findViewById(R.id.player1_commerce_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearAmount(R.id.player1_commerce);
-                coinSound.start();
-            }
-        });
-
-        /* Player 2 */
-        findViewById(R.id.player2_commerce_plus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_commerce, 1, true);
-            }
-        });
-        findViewById(R.id.player2_commerce_plus2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_commerce, 2, true);
-            }
-        });
-        findViewById(R.id.player2_commerce_plus4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_commerce, 4, true);
-            }
-        });
-        findViewById(R.id.player2_commerce_plus8).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_commerce, 8, true);
-            }
-        });
-        findViewById(R.id.player2_commerce_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearAmount(R.id.player2_commerce);
-                coinSound.start();
-            }
-        });
+        setCommerceListeners(R.id.player1_commerce_layout, R.id.player1_commerce);
+        setCommerceListeners(R.id.player2_commerce_layout, R.id.player2_commerce);
 
         /* Attack */
-
-        /* Player 1 */
         setAttackListeners(R.id.player1_attack_layout, R.id.player1_attack, R.id.player2_health);
-
-        /* Player 2 */
         setAttackListeners(R.id.player2_attack_layout, R.id.player2_attack, R.id.player1_health);
 
     }
@@ -294,6 +226,46 @@ public class FullscreenActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         applyAttack(playerAttack, playerHealth);
+                    }
+                });
+            }
+        }
+
+    }
+
+
+    /**
+     * Attach actions to commerce buttons
+     * @param commerceLayout Layout with buttons
+     * @param playerCommerce Player's commerce field
+     */
+    public void setCommerceListeners(
+            int commerceLayout,
+            final int playerCommerce
+    ) {
+        LinearLayout playerCommerceLayout = (LinearLayout)findViewById(commerceLayout);
+
+        // Iterate all layout items
+        for(int i = 0; i < playerCommerceLayout.getChildCount(); i++) {
+            View v = playerCommerceLayout.getChildAt(i);
+            String name = getResources().getResourceName(v.getId());
+
+            // Commerce modifier button
+            if (name.contains("plus")) {
+                final int amount = Integer.valueOf(name.substring(name.length() - 1));
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateAmount(playerCommerce, amount, true);
+                    }
+                });
+            // Commerce reset button
+            } else if (name.contains("clear")) {
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clearAmount(playerCommerce);
+                        coinSound.start();
                     }
                 });
             }

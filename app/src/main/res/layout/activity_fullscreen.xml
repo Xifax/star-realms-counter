@@ -66,6 +66,7 @@
 
         <!-- Commerce -->
         <LinearLayout
+            android:id="@+id/player1_commerce_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -187,6 +188,7 @@
 
             <!-- Commerce -->
             <LinearLayout
+                android:id="@+id/player2_commerce_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
