@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,6 +22,13 @@ public class FullscreenActivity extends Activity {
      */
     private MediaPlayer laserSound;
     private MediaPlayer coinSound;
+
+    /**
+     * Activity log
+     */
+    private final int MAX_ENTRIES = 8;
+    private ArrayList<String> logArray;
+    private ArrayAdapter logAdapter;
 
     /******************
      * Initialization *
@@ -58,6 +69,13 @@ public class FullscreenActivity extends Activity {
         setAttackListeners(R.id.player1_attack_layout, R.id.player1_attack, R.id.player2_health);
         setAttackListeners(R.id.player2_attack_layout, R.id.player2_attack, R.id.player1_health);
 
+        /* Setup activity log */
+        ListView logView = (ListView) findViewById(R.id.activity_log);
+        logArray = new ArrayList<>();
+        logArray.add("START");
+        logAdapter = new ArrayAdapter(this, R.layout.log_item, logArray);
+        logView.setAdapter(logAdapter);
+
     }
 
     /**************************
@@ -92,6 +110,9 @@ public class FullscreenActivity extends Activity {
      */
     public void applyAttack(int attackField, int defenderInfluence) {
         TextView attack = (TextView)findViewById(attackField);
+        if(attack.getText() == "0")
+            return;
+
         TextView influence = (TextView)findViewById(defenderInfluence);
         int resultingInfluence = Integer.valueOf(influence.getText().toString()) -
                 Integer.valueOf(attack.getText().toString());
@@ -101,6 +122,9 @@ public class FullscreenActivity extends Activity {
 
         // Pew-pew!
         laserSound.start();
+
+        // Update activity
+        updateLog();
     }
 
 
@@ -243,5 +267,21 @@ public class FullscreenActivity extends Activity {
     /************************************
      * Activity listeners and overrides *
      ************************************/
+
+    /**
+     * Update log with current influence
+     */
+    public void updateLog() {
+        String player1HP = ((TextView)findViewById(R.id.player1_health)).getText().toString();
+        String player2HP = ((TextView)findViewById(R.id.player2_health)).getText().toString();
+
+        logArray.add(String.format("%s:%s", player2HP, player1HP));
+        // Remove old entries
+        if(logArray.size() > MAX_ENTRIES) {
+            logArray.remove(0);
+        }
+
+        logAdapter.notifyDataSetChanged();
+    }
 
 }

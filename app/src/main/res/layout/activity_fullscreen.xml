@@ -136,8 +136,21 @@
         </LinearLayout> <!-- END Wrapper -->
     </FrameLayout> <!-- END Player 1 -->
 
-    <!-- TODO: Log? -->
-    <!-- TODO: update after another player changed something -->
+    <!-- Log -->
+    <FrameLayout android:layout_width="100dp"
+        android:layout_height="fill_parent"
+        android:rotation="-90"
+        android:layout_centerInParent="true"
+        android:background="@color/black_overlay">
+
+        <ListView
+            android:id="@+id/activity_log"
+            android:layout_gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    </FrameLayout> <!-- END Log -->
 
     <!-- Player 2 -->
     <FrameLayout android:layout_width="match_parent"
