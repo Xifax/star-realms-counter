@@ -1,8 +1,8 @@
 # Star Realms Counter
 
-Counter for Star Realms card game.
-For two players and hydra mode.
+Influence, commerce and attack counter for Star Realms card game.
+Two players and/or hydra mode.
 
 Example screen:
 
-![Star Realms Counter screensho](/img/screen.png)
+![Star Realms Counter screen](/img/screen.png)
