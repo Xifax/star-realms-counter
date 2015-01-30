@@ -5,4 +5,4 @@ Two players and/or hydra mode.
 
 Example screen:
 
-![Star Realms Counter screen](/img/screen.png =250x)
+![Star Realms Counter screen](/img/screen.png)
