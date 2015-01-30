@@ -29,6 +29,7 @@
 
         <!-- Combat -->
         <LinearLayout
+            android:id="@+id/player1_attack_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -149,6 +150,7 @@
 
             <!-- Combat -->
             <LinearLayout
+                android:id="@+id/player2_attack_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 

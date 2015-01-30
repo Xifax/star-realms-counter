@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -200,82 +202,11 @@ public class FullscreenActivity extends Activity {
         /* Attack */
 
         /* Player 1 */
-        findViewById(R.id.player1_attack_plus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_attack, 1, true);
-            }
-        });
-        findViewById(R.id.player1_attack_plus2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_attack, 2, true);
-            }
-        });
-        findViewById(R.id.player1_attack_plus4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_attack, 4, true);
-            }
-        });
-        findViewById(R.id.player1_attack_plus8).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_attack, 8, true);
-            }
-        });
-        findViewById(R.id.player1_attack_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearAmount(R.id.player1_attack);
-            }
-        });
-
-        findViewById(R.id.player1_attack_apply).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                applyAttack(R.id.player1_attack, R.id.player2_health);
-            }
-        });
+        setAttackListeners(R.id.player1_attack_layout, R.id.player1_attack, R.id.player2_health);
 
         /* Player 2 */
-        findViewById(R.id.player2_attack_plus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_attack, 1, true);
-            }
-        });
-        findViewById(R.id.player2_attack_plus2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_attack, 2, true);
-            }
-        });
-        findViewById(R.id.player2_attack_plus4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_attack, 4, true);
-            }
-        });
-        findViewById(R.id.player2_attack_plus8).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_attack, 8, true);
-            }
-        });
-        findViewById(R.id.player2_attack_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearAmount(R.id.player2_attack);
-            }
-        });
+        setAttackListeners(R.id.player2_attack_layout, R.id.player2_attack, R.id.player1_health);
 
-        findViewById(R.id.player2_attack_apply).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                applyAttack(R.id.player2_attack, R.id.player1_health);
-            }
-        });
     }
 
     /**************************
@@ -319,6 +250,55 @@ public class FullscreenActivity extends Activity {
 
         // Pew-pew!
         laserSound.start();
+    }
+
+
+    /**
+     * Attach actions to attack buttons
+     * @param attackLayout Layout with attack buttons
+     * @param playerAttack Player's attack field
+     * @param playerHealth Opponent's health field
+     */
+    public void setAttackListeners(
+            int attackLayout,
+            final int playerAttack,
+            final int playerHealth
+    ) {
+        LinearLayout playerAttackLayout = (LinearLayout)findViewById(attackLayout);
+
+        // Iterate all layout items
+        for(int i = 0; i < playerAttackLayout.getChildCount(); i++) {
+            View v = playerAttackLayout.getChildAt(i);
+            String name = getResources().getResourceName(v.getId());
+
+            // Attack modifier button
+            if(name.contains("plus")) {
+                final int amount = Integer.valueOf(name.substring(name.length() - 1));
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateAmount(playerAttack, amount, true);
+                    }
+                });
+            // Attack reset button
+            } else if(name.contains("clear")) {
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clearAmount(playerAttack);
+                    }
+                });
+            // Attack button
+            } else if(name.contains("apply")) {
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        applyAttack(playerAttack, playerHealth);
+                    }
+                });
+            }
+        }
+
     }
 
     /************************************
