@@ -22,6 +22,7 @@ public class FullscreenActivity extends Activity {
      */
     private MediaPlayer laserSound;
     private MediaPlayer coinSound;
+    private MediaPlayer failSound;
 
     /**
      * Activity log
@@ -56,6 +57,7 @@ public class FullscreenActivity extends Activity {
         /* Initialize sounds */
         laserSound = MediaPlayer.create(this, R.raw.laser);
         coinSound = MediaPlayer.create(this, R.raw.coin);
+        failSound = MediaPlayer.create(this, R.raw.fail);
 
         /* Influence */
         setInfluenceListeners(R.id.player1_health_layout, R.id.player1_health);
@@ -110,12 +112,14 @@ public class FullscreenActivity extends Activity {
      */
     public void applyAttack(int attackField, int defenderInfluence) {
         TextView attack = (TextView)findViewById(attackField);
-        if(attack.getText() == "0")
+        int attackValue = Integer.valueOf(attack.getText().toString());
+        if(attackValue == 0) {
+            failSound.start();
             return;
+        }
 
         TextView influence = (TextView)findViewById(defenderInfluence);
-        int resultingInfluence = Integer.valueOf(influence.getText().toString()) -
-                Integer.valueOf(attack.getText().toString());
+        int resultingInfluence = Integer.valueOf(influence.getText().toString()) - attackValue;
 
         influence.setText(String.valueOf(resultingInfluence));
         attack.setText("0");
