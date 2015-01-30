@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -132,6 +131,7 @@ public class FullscreenActivity extends Activity {
                         updateAmount(playerAttack, amount, true);
                     }
                 });
+
             // Attack reset button
             } else if(name.contains("clear")) {
                 v.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +140,7 @@ public class FullscreenActivity extends Activity {
                         clearAmount(playerAttack);
                     }
                 });
+
             // Attack button
             } else if(name.contains("apply")) {
                 v.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +180,7 @@ public class FullscreenActivity extends Activity {
                         updateAmount(playerCommerce, amount, true);
                     }
                 });
+
             // Commerce reset button
             } else if (name.contains("clear")) {
                 v.setOnClickListener(new View.OnClickListener() {
@@ -210,7 +212,7 @@ public class FullscreenActivity extends Activity {
             View v = playerInfluenceLayout.getChildAt(i);
             String name = getResources().getResourceName(v.getId());
 
-            // Commerce modifier button
+            // Influence plus button
             if (name.contains("plus")) {
                 final int amount = Integer.valueOf(
                         name.substring(name.length() - 2).replaceAll("\\D+", "")
@@ -221,7 +223,8 @@ public class FullscreenActivity extends Activity {
                         updateAmount(playerInfluence, amount, true);
                     }
                 });
-                // Commerce reset button
+
+            // Influence minus button
             } else if (name.contains("minus")) {
                 final int amount = Integer.valueOf(
                         name.substring(name.length() - 2).replaceAll("\\D+", "")
