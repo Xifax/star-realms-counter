@@ -47,89 +47,9 @@ public class FullscreenActivity extends Activity {
         laserSound = MediaPlayer.create(this, R.raw.laser);
         coinSound = MediaPlayer.create(this, R.raw.coin);
 
-        // TODO: use reflection to refactor this mess
-
         /* Influence */
-
-        /* Player 1, plus HP */
-        findViewById(R.id.player1_health_plus10).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_health, 10, true);
-            }
-        });
-        findViewById(R.id.player1_health_plus5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_health, 5, true);
-            }
-        });
-        findViewById(R.id.player1_health_plus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_health, 1, true);
-            }
-        });
-
-        /* Player 1, minus HP */
-        findViewById(R.id.player1_health_minus10).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_health, 10, false);
-            }
-        });
-        findViewById(R.id.player1_health_minus5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_health, 5, false);
-            }
-        });
-        findViewById(R.id.player1_health_minus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player1_health, 1, false);
-            }
-        });
-
-        /* Player 2, plus HP */
-        findViewById(R.id.player2_health_plus10).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_health, 10, true);
-            }
-        });
-        findViewById(R.id.player2_health_plus5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_health, 5, true);
-            }
-        });
-        findViewById(R.id.player2_health_plus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_health, 1, true);
-            }
-        });
-
-        /* Player 2, minus HP */
-        findViewById(R.id.player2_health_minus10).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_health, 10, false);
-            }
-        });
-        findViewById(R.id.player2_health_minus5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_health, 5, false);
-            }
-        });
-        findViewById(R.id.player2_health_minus1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAmount(R.id.player2_health, 1, false);
-            }
-        });
+        setInfluenceListeners(R.id.player1_health_layout, R.id.player1_health);
+        setInfluenceListeners(R.id.player2_health_layout, R.id.player2_health);
 
         /* Commerce */
         setCommerceListeners(R.id.player1_commerce_layout, R.id.player1_commerce);
@@ -266,6 +186,50 @@ public class FullscreenActivity extends Activity {
                     public void onClick(View v) {
                         clearAmount(playerCommerce);
                         coinSound.start();
+                    }
+                });
+            }
+        }
+
+    }
+
+
+    /**
+     * Attach actions to influence buttons
+     * @param influenceLayout Player influence layout
+     * @param playerInfluence Player influence field
+     */
+    public void setInfluenceListeners(
+            int influenceLayout,
+            final int playerInfluence
+    ) {
+        LinearLayout playerInfluenceLayout = (LinearLayout)findViewById(influenceLayout);
+
+        // Iterate all layout items
+        for(int i = 0; i < playerInfluenceLayout.getChildCount(); i++) {
+            View v = playerInfluenceLayout.getChildAt(i);
+            String name = getResources().getResourceName(v.getId());
+
+            // Commerce modifier button
+            if (name.contains("plus")) {
+                final int amount = Integer.valueOf(
+                        name.substring(name.length() - 2).replaceAll("\\D+", "")
+                );
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateAmount(playerInfluence, amount, true);
+                    }
+                });
+                // Commerce reset button
+            } else if (name.contains("minus")) {
+                final int amount = Integer.valueOf(
+                        name.substring(name.length() - 2).replaceAll("\\D+", "")
+                );
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateAmount(playerInfluence, amount, false);
                     }
                 });
             }

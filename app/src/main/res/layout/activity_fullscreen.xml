@@ -99,6 +99,7 @@
 
         <!-- Influence -->
         <LinearLayout
+            android:id="@+id/player1_health_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
